@@ -53,7 +53,7 @@ CivicVoice is a comprehensive web-based grievance redressal system designed to f
 
 1.  **Clone the repository**:
     ```bash
-    git clone https://github.com/yourusername/CivicVoice.git
+    git clone https://github.com/GAURANG022004/Civic-Voice.git
     ```
 2.  **Configure Database**:
     -   Update the database credentials in the configuration file.
