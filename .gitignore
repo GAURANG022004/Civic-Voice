@@ -1,0 +1,12 @@
+target/
+recovered-bytecode/
+WEB-INF/classes/
+WEB-INF/lib/
+
+*.class
+*.war
+*.log
+
+.idea/
+.vscode/
+*.iml
