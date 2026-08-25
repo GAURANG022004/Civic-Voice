@@ -10,3 +10,7 @@ WEB-INF/lib/
 .idea/
 .vscode/
 *.iml
+.settings/
+.classpath
+.project
+.DS_Store
