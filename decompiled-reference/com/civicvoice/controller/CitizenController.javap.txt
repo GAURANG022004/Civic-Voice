@@ -1,0 +1,157 @@
+Compiled from "CitizenController.java"
+public class com.civicvoice.controller.CitizenController {
+  org.springframework.context.ApplicationContext context;
+    descriptor: Lorg/springframework/context/ApplicationContext;
+
+  com.civicvoice.model.Citizen citizen;
+    descriptor: Lcom/civicvoice/model/Citizen;
+
+  com.civicvoice.dao.CitizenDao citizenDao;
+    descriptor: Lcom/civicvoice/dao/CitizenDao;
+
+  public com.civicvoice.controller.CitizenController();
+    descriptor: ()V
+    Code:
+       0: aload_0
+       1: invokespecial #14                 // Method java/lang/Object."<init>":()V
+       4: aload_0
+       5: new           #16                 // class org/springframework/context/support/ClassPathXmlApplicationContext
+       8: dup
+       9: ldc           #18                 // String config.xml
+      11: invokespecial #20                 // Method org/springframework/context/support/ClassPathXmlApplicationContext."<init>":(Ljava/lang/String;)V
+      14: putfield      #23                 // Field context:Lorg/springframework/context/ApplicationContext;
+      17: aload_0
+      18: aload_0
+      19: getfield      #23                 // Field context:Lorg/springframework/context/ApplicationContext;
+      22: ldc           #25                 // String citizen
+      24: invokeinterface #26,  2           // InterfaceMethod org/springframework/context/ApplicationContext.getBean:(Ljava/lang/String;)Ljava/lang/Object;
+      29: checkcast     #32                 // class com/civicvoice/model/Citizen
+      32: putfield      #34                 // Field citizen:Lcom/civicvoice/model/Citizen;
+      35: aload_0
+      36: aload_0
+      37: getfield      #23                 // Field context:Lorg/springframework/context/ApplicationContext;
+      40: ldc           #36                 // String citizenDao
+      42: ldc           #37                 // class com/civicvoice/dao/CitizenDao
+      44: invokeinterface #39,  3           // InterfaceMethod org/springframework/context/ApplicationContext.getBean:(Ljava/lang/String;Ljava/lang/Class;)Ljava/lang/Object;
+      49: checkcast     #37                 // class com/civicvoice/dao/CitizenDao
+      52: putfield      #42                 // Field citizenDao:Lcom/civicvoice/dao/CitizenDao;
+      55: return
+
+  public java.lang.String showForm();
+    descriptor: ()Ljava/lang/String;
+    Code:
+       0: ldc           #57                 // String registerCitizen
+       2: areturn
+
+  public java.lang.String accopen(javax.servlet.http.HttpServletRequest);
+    descriptor: (Ljavax/servlet/http/HttpServletRequest;)Ljava/lang/String;
+    Code:
+       0: aload_1
+       1: ldc           #62                 // String contactId
+       3: invokeinterface #64,  2           // InterfaceMethod javax/servlet/http/HttpServletRequest.getParameter:(Ljava/lang/String;)Ljava/lang/String;
+       8: astore_2
+       9: getstatic     #70                 // Field java/lang/System.out:Ljava/io/PrintStream;
+      12: new           #76                 // class java/lang/StringBuilder
+      15: dup
+      16: ldc           #78                 // String  contactId =
+      18: invokespecial #80                 // Method java/lang/StringBuilder."<init>":(Ljava/lang/String;)V
+      21: aload_2
+      22: invokevirtual #81                 // Method java/lang/StringBuilder.append:(Ljava/lang/String;)Ljava/lang/StringBuilder;
+      25: invokevirtual #85                 // Method java/lang/StringBuilder.toString:()Ljava/lang/String;
+      28: invokevirtual #88                 // Method java/io/PrintStream.println:(Ljava/lang/String;)V
+      31: aload_2
+      32: ifnull        45
+      35: aload_2
+      36: invokevirtual #93                 // Method java/lang/String.trim:()Ljava/lang/String;
+      39: invokevirtual #98                 // Method java/lang/String.isEmpty:()Z
+      42: ifeq          56
+      45: getstatic     #70                 // Field java/lang/System.out:Ljava/io/PrintStream;
+      48: ldc           #102                // String  contactId is null/blank. Aborting.
+      50: invokevirtual #88                 // Method java/io/PrintStream.println:(Ljava/lang/String;)V
+      53: ldc           #57                 // String registerCitizen
+      55: areturn
+      56: new           #32                 // class com/civicvoice/model/Citizen
+      59: dup
+      60: invokespecial #104                // Method com/civicvoice/model/Citizen."<init>":()V
+      63: astore_3
+      64: aload_3
+      65: aload_2
+      66: invokevirtual #105                // Method com/civicvoice/model/Citizen.setContactId:(Ljava/lang/String;)V
+      69: aload_3
+      70: aload_1
+      71: ldc           #108                // String name
+      73: invokeinterface #64,  2           // InterfaceMethod javax/servlet/http/HttpServletRequest.getParameter:(Ljava/lang/String;)Ljava/lang/String;
+      78: invokevirtual #110                // Method com/civicvoice/model/Citizen.setName:(Ljava/lang/String;)V
+      81: aload_3
+      82: aload_1
+      83: ldc           #113                // String address
+      85: invokeinterface #64,  2           // InterfaceMethod javax/servlet/http/HttpServletRequest.getParameter:(Ljava/lang/String;)Ljava/lang/String;
+      90: invokevirtual #115                // Method com/civicvoice/model/Citizen.setAddress:(Ljava/lang/String;)V
+      93: aload_3
+      94: aload_1
+      95: ldc           #118                // String email
+      97: invokeinterface #64,  2           // InterfaceMethod javax/servlet/http/HttpServletRequest.getParameter:(Ljava/lang/String;)Ljava/lang/String;
+     102: invokevirtual #120                // Method com/civicvoice/model/Citizen.setEmail:(Ljava/lang/String;)V
+     105: aload_3
+     106: aload_1
+     107: ldc           #123                // String password
+     109: invokeinterface #64,  2           // InterfaceMethod javax/servlet/http/HttpServletRequest.getParameter:(Ljava/lang/String;)Ljava/lang/String;
+     114: invokevirtual #125                // Method com/civicvoice/model/Citizen.setPassword:(Ljava/lang/String;)V
+     117: aload_0
+     118: getfield      #42                 // Field citizenDao:Lcom/civicvoice/dao/CitizenDao;
+     121: aload_3
+     122: invokevirtual #128                // Method com/civicvoice/dao/CitizenDao.insert:(Lcom/civicvoice/model/Citizen;)V
+     125: getstatic     #70                 // Field java/lang/System.out:Ljava/io/PrintStream;
+     128: new           #76                 // class java/lang/StringBuilder
+     131: dup
+     132: ldc           #132                // String  Full Citizen:
+     134: invokespecial #80                 // Method java/lang/StringBuilder."<init>":(Ljava/lang/String;)V
+     137: aload_3
+     138: invokevirtual #134                // Method java/lang/StringBuilder.append:(Ljava/lang/Object;)Ljava/lang/StringBuilder;
+     141: invokevirtual #85                 // Method java/lang/StringBuilder.toString:()Ljava/lang/String;
+     144: invokevirtual #88                 // Method java/io/PrintStream.println:(Ljava/lang/String;)V
+     147: ldc           #137                // String login
+     149: areturn
+
+  public java.lang.String login(javax.servlet.http.HttpServletRequest, org.springframework.ui.Model);
+    descriptor: (Ljavax/servlet/http/HttpServletRequest;Lorg/springframework/ui/Model;)Ljava/lang/String;
+    Code:
+       0: aload_1
+       1: ldc           #62                 // String contactId
+       3: invokeinterface #64,  2           // InterfaceMethod javax/servlet/http/HttpServletRequest.getParameter:(Ljava/lang/String;)Ljava/lang/String;
+       8: astore_3
+       9: aload_1
+      10: ldc           #123                // String password
+      12: invokeinterface #64,  2           // InterfaceMethod javax/servlet/http/HttpServletRequest.getParameter:(Ljava/lang/String;)Ljava/lang/String;
+      17: astore        4
+      19: aload_0
+      20: getfield      #42                 // Field citizenDao:Lcom/civicvoice/dao/CitizenDao;
+      23: aload_3
+      24: aload         4
+      26: invokevirtual #144                // Method com/civicvoice/dao/CitizenDao.getCitizenByContactAndPassword:(Ljava/lang/String;Ljava/lang/String;)Lcom/civicvoice/model/Citizen;
+      29: astore        5
+      31: aload         5
+      33: ifnull        54
+      36: aload_1
+      37: invokeinterface #148,  1          // InterfaceMethod javax/servlet/http/HttpServletRequest.getSession:()Ljavax/servlet/http/HttpSession;
+      42: ldc           #25                 // String citizen
+      44: aload         5
+      46: invokeinterface #152,  3          // InterfaceMethod javax/servlet/http/HttpSession.setAttribute:(Ljava/lang/String;Ljava/lang/Object;)V
+      51: ldc           #158                // String citizenDashboard
+      53: areturn
+      54: aload_2
+      55: ldc           #160                // String error
+      57: ldc           #162                // String Invalid contact ID or password
+      59: invokeinterface #164,  3          // InterfaceMethod org/springframework/ui/Model.addAttribute:(Ljava/lang/String;Ljava/lang/Object;)Lorg/springframework/ui/Model;
+      64: pop
+      65: ldc           #137                // String login
+      67: areturn
+
+  public java.lang.String logout(javax.servlet.http.HttpSession);
+    descriptor: (Ljavax/servlet/http/HttpSession;)Ljava/lang/String;
+    Code:
+       0: aload_1
+       1: invokeinterface #176,  1          // InterfaceMethod javax/servlet/http/HttpSession.invalidate:()V
+       6: ldc           #137                // String login
+       8: areturn
+}
