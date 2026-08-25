@@ -2,12 +2,15 @@ package com.civicvoice.dao;
 
 import java.util.List;
 import org.springframework.orm.hibernate5.HibernateTemplate;
+import org.springframework.stereotype.Repository;
 import com.civicvoice.model.Citizen;
 
+@Repository
 public class CitizenDao {
-    private HibernateTemplate hibernateTemplate;
+    private final HibernateTemplate hibernateTemplate;
 
-    public CitizenDao() {
+    public CitizenDao(HibernateTemplate hibernateTemplate) {
+        this.hibernateTemplate = hibernateTemplate;
     }
 
     public void insert(Citizen c) {

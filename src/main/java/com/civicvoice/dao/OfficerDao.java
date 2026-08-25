@@ -2,8 +2,10 @@ package com.civicvoice.dao;
 
 import java.util.List;
 import org.springframework.orm.hibernate5.HibernateTemplate;
+import org.springframework.stereotype.Repository;
 import com.civicvoice.model.Officer;
 
+@Repository
 public class OfficerDao {
     private final HibernateTemplate hibernateTemplate;
 

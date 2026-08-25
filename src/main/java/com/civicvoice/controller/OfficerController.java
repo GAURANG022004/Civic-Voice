@@ -1,14 +1,20 @@
 package com.civicvoice.controller;
 
-import javax.servlet.http.*;
-import org.springframework.context.*;
+import javax.servlet.http.HttpServletRequest;
+import org.springframework.context.ApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.*;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
-import com.civicvoice.dao.*;
-import com.civicvoice.model.*;
+import com.civicvoice.dao.GrievanceDao;
+import com.civicvoice.dao.OfficerDao;
+import com.civicvoice.model.Grievance;
+import com.civicvoice.model.Officer;
 
 @Controller
 public class OfficerController {

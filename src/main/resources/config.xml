@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:context="http://www.springframework.org/schema/context"
+	xmlns:p="http://www.springframework.org/schema/p" xmlns:tx="http://www.springframework.org/schema/tx"
+	xsi:schemaLocation="
+           http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+           http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd
+           http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx.xsd">
+
+	<!-- Enable annotation-based configuration -->
+	<tx:annotation-driven/>
+
+	<!-- Scan all model and DAO packages -->
+	
+	<context:component-scan base-package="com.civicvoice.model" />
+	<context:component-scan base-package="com.civicvoice.dao" />
+
+	<!-- MySQL Database Configuration -->
+	<bean
+		class="org.springframework.jdbc.datasource.DriverManagerDataSource" name="ds">
+		<property name="driverClassName" value="com.mysql.cj.jdbc.Driver" />
+		<property name="url" value="jdbc:mysql://localhost:3306/civicvoiceDB" />
+		<property name="username" value="root" />
+		<property name="password" value="mali@123" />
+	</bean>
+
+	
+
+
+	<!-- Hibernate SessionFactory -->
+	<bean name="factory"
+		class="org.springframework.orm.hibernate5.LocalSessionFactoryBean">
+		<property name="dataSource" ref="ds" />
+		<property name="hibernateProperties">
+			<props>
+				<prop key="hibernate.dialect">org.hibernate.dialect.MySQL57Dialect</prop>
+				<prop key="hibernate.show_sql">true</prop>
+				<prop key="hibernate.hbm2ddl.auto">update</prop>
+			</props>
+		</property>
+		<property name="annotatedClasses">
+			<list>
+				<value>com.civicvoice.model.Citizen</value>
+				<value>com.civicvoice.model.Grievance</value>
+				<value>com.civicvoice.model.Officer</value>
+				
+			</list>
+		</property>
+	</bean>
+
+
+	<!-- Hibernate Template -->
+	<bean name="hibernateTemplate" class="org.springframework.orm.hibernate5.HibernateTemplate">
+		<property name="sessionFactory" ref="factory" />
+	</bean>
+
+	
+	
+	<!-- Transaction Manager -->
+	<bean name="transactionManager"
+		class="org.springframework.orm.hibernate5.HibernateTransactionManager">
+		<property name="sessionFactory" ref="factory" />
+	</bean>
+
+	
+</beans>

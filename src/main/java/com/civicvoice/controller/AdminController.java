@@ -1,12 +1,18 @@
 package com.civicvoice.controller;
 
 import javax.servlet.http.HttpServletRequest;
-import org.springframework.context.*;
+import org.springframework.context.ApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.*;
-import com.civicvoice.dao.*;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
+import com.civicvoice.dao.CitizenDao;
+import com.civicvoice.dao.GrievanceDao;
+import com.civicvoice.dao.OfficerDao;
 import com.civicvoice.model.Officer;
 
 @Controller

@@ -2,13 +2,16 @@ package com.civicvoice.controller;
 
 import java.time.LocalDate;
 import javax.servlet.http.HttpSession;
-import org.springframework.context.*;
+import org.springframework.context.ApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.*;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import com.civicvoice.dao.GrievanceDao;
-import com.civicvoice.model.*;
+import com.civicvoice.model.Citizen;
+import com.civicvoice.model.Grievance;
 
 @Controller
 public class GrievanceController {
