@@ -3,9 +3,11 @@ package com.civicvoice.dao;
 import java.util.List;
 import org.springframework.orm.hibernate5.HibernateTemplate;
 import org.springframework.stereotype.Repository;
+import org.springframework.transaction.annotation.Transactional;
 import com.civicvoice.model.Officer;
 
 @Repository
+@Transactional
 public class OfficerDao {
     private final HibernateTemplate hibernateTemplate;
 
@@ -17,10 +19,10 @@ public class OfficerDao {
         hibernateTemplate.save(o);
     }
 
-    public Officer getOfficerByContactAndPassword(String id, String pw) {
-        String q = "from Officer where contactId = :contactId and password = :password";
-        List<?> l = hibernateTemplate.findByNamedParam(q, new String[] { "contactId", "password" },
-                new Object[] { id, pw });
+    public Officer getOfficerByEmailAndPassword(String email, String pw) {
+        String q = "from Officer where email = :email and password = :password";
+        List<?> l = hibernateTemplate.findByNamedParam(q, new String[] { "email", "password" },
+                new Object[] { email, pw });
         return l.isEmpty() ? null : (Officer) l.get(0);
     }
 

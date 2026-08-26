@@ -63,7 +63,16 @@ CivicVoice is a comprehensive web-based grievance redressal system designed to f
     mvn clean install
     ```
 4.  **Run**:
-    -   Deploy the WAR file to a servlet container like Apache Tomcat.
+    -   Run locally with the Maven Tomcat runner:
+        ```bash
+        mvn org.apache.tomcat.maven:tomcat7-maven-plugin:2.2:run-war
+        ```
+    -   Open `http://localhost:8080/CivicVoice/`.
+
+The project uses Maven's standard web application layout. The `war` packaging
+creates a deployable archive for Tomcat; it does not change or duplicate the
+source structure. Build output is generated under `target/` and is ignored by
+Git.
 
 ---
 *Developed for Civic Engagement & Transparency.*

@@ -21,7 +21,7 @@
 		<property name="driverClassName" value="com.mysql.cj.jdbc.Driver" />
 		<property name="url" value="jdbc:mysql://localhost:3306/civicvoiceDB" />
 		<property name="username" value="root" />
-		<property name="password" value="mali@123" />
+		<property name="password" value="Mali@123" />
 	</bean>
 
 	

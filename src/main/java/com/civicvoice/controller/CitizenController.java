@@ -1,10 +1,7 @@
 package com.civicvoice.controller;
 
 import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpSession;
 
-import org.springframework.context.ApplicationContext;
-import org.springframework.context.support.ClassPathXmlApplicationContext;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -16,14 +13,10 @@ import com.civicvoice.model.Citizen;
 @Controller
 public class CitizenController {
     
-    ApplicationContext context;
-    Citizen citizen;
     CitizenDao citizenDao;
 
-    public CitizenController() {
-        context = new ClassPathXmlApplicationContext("config.xml");
-        citizen = (Citizen) context.getBean("citizen");
-        citizenDao = context.getBean("citizenDao", CitizenDao.class);
+    public CitizenController(CitizenDao citizenDao) {
+        this.citizenDao = citizenDao;
     }
 
     @RequestMapping(path = "/registerCitizen", method = RequestMethod.GET)
@@ -60,26 +53,18 @@ public class CitizenController {
     @RequestMapping(path = "/CitizenLogin", method = RequestMethod.POST)
     public String login(HttpServletRequest r, Model m) {
 
-        String id = r.getParameter("contactId"), pw = r.getParameter("password");
+        String email = r.getParameter("email"), pw = r.getParameter("password");
 
-        Citizen c = citizenDao.getCitizenByContactAndPassword(id, pw);
+        Citizen c = citizenDao.getCitizenByEmailAndPassword(email, pw);
 
         if (c != null) {
             r.getSession().setAttribute("citizen", c);
             return "citizenDashboard";
         }
 
-        m.addAttribute("error", "Invalid contact ID or password");
+        m.addAttribute("error", "Invalid email or password");
 
         return "login";
     }
 
-    @RequestMapping("/logout")
-    public String logout(HttpSession s) {
-
-        s.invalidate();
-
-        return "login";
-
-    }
 }

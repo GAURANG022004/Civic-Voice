@@ -150,7 +150,7 @@
                     </div>
 
                     <div class="stat-box">
-                        <a href="myGrievances">
+                        <a href="viewGrievances">
                             <i class="fas fa-file-alt"></i>
                             <p>View Grievances</p>
                         </a>
@@ -159,7 +159,7 @@
             </div>
             
             <div class="logout-btn">
-                <a href="adminLogout" class="btn btn-danger">
+                <a href="logout" class="btn btn-danger">
                     <i class="fas fa-sign-out-alt mr-2"></i> Logout
                 </a>
             </div>

@@ -3,9 +3,11 @@ package com.civicvoice.dao;
 import java.util.List;
 import org.springframework.orm.hibernate5.HibernateTemplate;
 import org.springframework.stereotype.Repository;
+import org.springframework.transaction.annotation.Transactional;
 import com.civicvoice.model.Citizen;
 
 @Repository
+@Transactional
 public class CitizenDao {
     private final HibernateTemplate hibernateTemplate;
 
@@ -21,8 +23,8 @@ public class CitizenDao {
         return (Citizen) hibernateTemplate.get(Citizen.class, id);
     }
 
-    public Citizen getCitizenByContactAndPassword(String id, String pw) {
-        List<?> l = hibernateTemplate.find("from Citizen where contactId=?0 and password=?1", id, pw);
+    public Citizen getCitizenByEmailAndPassword(String email, String pw) {
+        List<?> l = hibernateTemplate.find("from Citizen where email=?0 and password=?1", email, pw);
         return l.isEmpty() ? null : (Citizen) l.get(0);
     }
 

@@ -1,8 +1,7 @@
 package com.civicvoice.controller;
 
 import javax.servlet.http.HttpServletRequest;
-import org.springframework.context.ApplicationContext;
-import org.springframework.context.support.ClassPathXmlApplicationContext;
+import javax.servlet.http.HttpSession;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -18,16 +17,14 @@ import com.civicvoice.model.Officer;
 @Controller
 @RequestMapping("/")
 public class AdminController {
-    ApplicationContext context;
     CitizenDao citizenDao;
     GrievanceDao grievanceDao;
     OfficerDao officerDao;
 
-    public AdminController() {
-        context = new ClassPathXmlApplicationContext("config.xml");
-        citizenDao = context.getBean("citizenDao", CitizenDao.class);
-        grievanceDao = context.getBean("grievanceDao", GrievanceDao.class);
-        officerDao = context.getBean("officerDao", OfficerDao.class);
+    public AdminController(CitizenDao citizenDao, GrievanceDao grievanceDao, OfficerDao officerDao) {
+        this.citizenDao = citizenDao;
+        this.grievanceDao = grievanceDao;
+        this.officerDao = officerDao;
     }
 
     @RequestMapping("/")
@@ -52,7 +49,7 @@ public class AdminController {
 
     @GetMapping("/adminDashboard")
     public String adminDashboard() {
-        return "adminDashboard";
+        return "admindashboard";
     }
 
     @GetMapping("/addOfficer")
@@ -84,7 +81,7 @@ public class AdminController {
     @GetMapping("/viewGrievances")
     public String viewGrievances(Model m) {
         m.addAttribute("grievances", grievanceDao.getAllGrievances());
-        return "officerViewGrievances";
+        return "viewGrievances";
     }
 
     @RequestMapping("/deleteOfficer")
@@ -94,7 +91,8 @@ public class AdminController {
     }
 
     @RequestMapping("/logout")
-    public String logout() {
+    public String logout(HttpSession session) {
+        session.invalidate();
         return "login";
     }
 }

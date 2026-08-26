@@ -6,14 +6,23 @@
 </head>
 <body>
     <h2>Officer Registration</h2>
-    <form action="OfficerLogin" method="post">
+    <form action="registerOfficer" method="post">
+    <label>Name:</label>
+    <input type="text" name="name" required />
+
     <label>Contact ID:</label>
     <input type="text" name="contactId" required />
+
+    <label>Department:</label>
+    <input type="text" name="department" required />
+
+    <label>Email:</label>
+    <input type="email" name="email" required />
 
     <label>Password:</label>
     <input type="password" name="password" required />
 
-    <input type="submit" value="Login" />
+    <input type="submit" value="Register" />
 </form>
 
 </body>

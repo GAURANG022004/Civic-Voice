@@ -2,8 +2,6 @@ package com.civicvoice.controller;
 
 import java.time.LocalDate;
 import javax.servlet.http.HttpSession;
-import org.springframework.context.ApplicationContext;
-import org.springframework.context.support.ClassPathXmlApplicationContext;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -15,14 +13,10 @@ import com.civicvoice.model.Grievance;
 
 @Controller
 public class GrievanceController {
-    ApplicationContext context;
-    Grievance grievance;
     GrievanceDao grievanceDao;
 
-    public GrievanceController() {
-        context = new ClassPathXmlApplicationContext("config.xml");
-        grievance = (Grievance) context.getBean("grievance");
-        grievanceDao = context.getBean("grievanceDao", GrievanceDao.class);
+    public GrievanceController(GrievanceDao grievanceDao) {
+        this.grievanceDao = grievanceDao;
     }
 
     @GetMapping("/registerGrievance")

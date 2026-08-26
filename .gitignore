@@ -1,5 +1,7 @@
 target/
 recovered-bytecode/
+decompiled-reference/
+META-INF/
 WEB-INF/classes/
 WEB-INF/lib/
 

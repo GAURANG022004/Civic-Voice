@@ -1,8 +1,6 @@
 package com.civicvoice.controller;
 
 import javax.servlet.http.HttpServletRequest;
-import org.springframework.context.ApplicationContext;
-import org.springframework.context.support.ClassPathXmlApplicationContext;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -18,18 +16,12 @@ import com.civicvoice.model.Officer;
 
 @Controller
 public class OfficerController {
-    ApplicationContext context;
-    Officer officer;
     OfficerDao officerDao;
-    Grievance grievance;
     GrievanceDao grievanceDao;
 
-    public OfficerController() {
-        context = new ClassPathXmlApplicationContext("config.xml");
-        officer = (Officer) context.getBean("officer");
-        officerDao = context.getBean("officerDao", OfficerDao.class);
-        grievance = (Grievance) context.getBean("grievance");
-        grievanceDao = context.getBean("grievanceDao", GrievanceDao.class);
+    public OfficerController(OfficerDao officerDao, GrievanceDao grievanceDao) {
+        this.officerDao = officerDao;
+        this.grievanceDao = grievanceDao;
     }
 
     @GetMapping("/registerOfficer")
@@ -53,16 +45,16 @@ public class OfficerController {
 
     @RequestMapping(path = "/OfficerLogin", method = RequestMethod.POST)
     public String doLogin(HttpServletRequest r, Model m) {
-        String id = r.getParameter("contactId"), pw = r.getParameter("password");
-        System.out.println("Login Attempt --> Contact ID:" + id + ", Password:" + pw);
-        Officer o = officerDao.getOfficerByContactAndPassword(id, pw);
+        String email = r.getParameter("email"), pw = r.getParameter("password");
+        System.out.println("Login Attempt --> Email:" + email);
+        Officer o = officerDao.getOfficerByEmailAndPassword(email, pw);
         if (o != null) {
             System.out.println("Login Success for Officer:" + o.getName());
             r.getSession().setAttribute("officer", o);
             return "officerDashboard";
         }
         System.out.println("Login Failed: Invalid credentials");
-        m.addAttribute("error", "Invalid Officer credentials");
+        m.addAttribute("error", "Invalid email or password");
         return "login";
     }
 

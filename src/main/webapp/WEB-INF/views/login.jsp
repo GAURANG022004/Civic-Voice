@@ -425,7 +425,7 @@
     <form action="CitizenLogin" method="post" class="form" id="citizen-form">
         <div class="input-group">
             <i class="fas fa-id-card input-icon"></i>
-            <input type="text" name="contactId" placeholder="Contact ID" required />
+            <input type="email" name="email" placeholder="Email" required />
         </div>
         <div class="input-group">
             <i class="fas fa-lock input-icon"></i>
@@ -443,7 +443,7 @@
     <form action="OfficerLogin" method="post" class="form" id="officer-form">
         <div class="input-group">
             <i class="fas fa-id-card input-icon"></i>
-            <input type="text" name="contactId" placeholder="Officer ID" required />
+            <input type="email" name="email" placeholder="Email" required />
         </div>
         <div class="input-group">
             <i class="fas fa-lock input-icon"></i>
